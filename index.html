@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Happy Birthday Sumara</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0a0612;color:#fff}
+body{font-family:'DM Sans',system-ui,sans-serif}
+
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0612}
+.bg-mesh{
+  position:absolute;inset:-40%;width:180%;height:180%;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%,rgba(255,100,160,.32) 0%,transparent 55%),
+    radial-gradient(ellipse 45% 50% at 80% 20%,rgba(180,100,255,.25) 0%,transparent 50%),
+    radial-gradient(ellipse 55% 40% at 50% 80%,rgba(255,140,180,.2) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 35% at 10% 70%,rgba(200,80,200,.18) 0%,transparent 50%),
+    radial-gradient(ellipse 35% 40% at 90% 65%,rgba(255,160,100,.15) 0%,transparent 50%);
+  animation:meshMove 12s ease-in-out infinite alternate;
+}
+@keyframes meshMove{
+  0%{transform:translate(0,0) scale(1) rotate(0deg)}
+  50%{transform:translate(-4%,3%) scale(1.08) rotate(2deg)}
+  100%{transform:translate(3%,-2%) scale(1.04) rotate(-1deg)}
+}
+.blob{position:absolute;border-radius:50%;filter:blur(50px);mix-blend-mode:screen;opacity:.5;animation:blobFloat 8s ease-in-out infinite}
+.blob:nth-child(1){width:280px;height:280px;background:radial-gradient(circle,#ff6b9d,transparent 70%);top:5%;left:5%;animation-duration:9s}
+.blob:nth-child(2){width:220px;height:220px;background:radial-gradient(circle,#b86bff,transparent 70%);top:50%;right:0;animation-duration:11s;animation-delay:-2s}
+.blob:nth-child(3){width:180px;height:180px;background:radial-gradient(circle,#ff9ec4,transparent 70%);bottom:10%;left:35%;animation-duration:7s;animation-delay:-4s}
+.blob:nth-child(4){width:150px;height:150px;background:radial-gradient(circle,#ff7eb3,transparent 70%);top:30%;left:55%;animation-duration:10s;animation-delay:-1s}
+.blob:nth-child(5){width:200px;height:200px;background:radial-gradient(circle,#c77dff,transparent 70%);bottom:25%;right:15%;animation-duration:8s;animation-delay:-3s}
+@keyframes blobFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(40px, -50px) scale(1.15)}
+  50%{transform:translate(-30px,30px) scale(.9)}
+  75%{transform:translate(50px,20px) scale(1.1)}
+}
+.ring{position:absolute;border-radius:50%;border:2px solid rgba(255,120,180,.18);animation:ringPulse 6s ease-out infinite}
+.ring:nth-child(1){width:120px;height:120px;top:20%;left:15%;animation-delay:0s}
+.ring:nth-child(2){width:80px;height:80px;top:60%;right:20%;animation-delay:2s}
+.ring:nth-child(3){width:160px;height:160px;bottom:15%;left:40%;animation-delay:4s}
+@keyframes ringPulse{0%{transform:scale(.6);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+#fx{position:fixed;inset:0;z-index:1;pointer-events:none}
+.vig{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,#0a0612cc 100%)}
+
+#start{
+  position:fixed;inset:0;z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px;transition:opacity .55s ease,visibility .55s;
+}
+#start.hide{opacity:0;visibility:hidden;pointer-events:none}
+#start .cake{font-size:4.2rem;margin-bottom:14px;animation:bob 2s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,120,180,.5))}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+#start h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.2rem,10vw,3.4rem);text-align:center;line-height:1;
+  background:linear-gradient(180deg,#fff,#ffb3d0 50%,#ff6b9d);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;filter:drop-shadow(0 0 20px rgba(255,120,180,.3));
+}
+#start .sub{color:#ffb3d0;font-family:'Instrument Serif',serif;font-style:italic;font-size:1.15rem;margin-bottom:28px}
+#startBtn{
+  appearance:none;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;
+  padding:18px 52px;border-radius:999px;color:#1a0a12;
+  background:linear-gradient(135deg,#ffb3d0,#ff6b9d 50%,#e04080);
+  box-shadow:0 0 0 1px rgba(255,255,255,.25),0 14px 44px rgba(255,100,160,.55),inset 0 1px 0 rgba(255,255,255,.4);
+  animation:btnPulse 1.8s ease-in-out infinite;min-width:210px;
+}
+#startBtn:active{transform:scale(.95)}
+@keyframes btnPulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.25),0 14px 44px rgba(255,100,160,.55)}
+  50%{box-shadow:0 0 0 1px rgba(255,255,255,.4),0 14px 60px rgba(255,100,160,.85),0 0 90px rgba(255,100,160,.4)}
+}
+
+.app{position:relative;z-index:10;height:100%;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .5s}
+.app.show{opacity:1;pointer-events:auto}
+
+.rail{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:4px;padding:10px 12px;opacity:0;transition:opacity .4s}
+.rail.show{opacity:1}
+.rail i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.rail i b{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6b9d,#c77dff);border-radius:2px;box-shadow:0 0 8px #ff6b9d}
+
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:52px 20px 100px;opacity:0;visibility:hidden;pointer-events:none}
+.slide.on{opacity:1;visibility:visible;pointer-events:auto}
+
+.kicker{font-family:'Syne',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:#ff6b9d;margin-bottom:12px;text-shadow:0 0 18px #ff6b9d88}
+.hero{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,9vw,3.4rem);line-height:.95;letter-spacing:-.03em;text-align:center;
+  background:linear-gradient(180deg,#fff 15%,#ffb3d0 55%,#ff6b9d 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 24px rgba(255,100,160,.3));margin-bottom:10px;
+}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,3.5vw,1.35rem);color:#ffb3d0;text-align:center;margin-bottom:16px}
+.line{font-size:clamp(1.05rem,3.5vw,1.2rem);line-height:1.7;color:rgba(255,255,255,.92);text-align:center;max-width:360px;margin:0 auto}
+.emoji-big{font-size:clamp(3.2rem,14vw,5rem);margin-bottom:12px;filter:drop-shadow(0 0 20px rgba(255,120,180,.45));animation:bob 2.2s ease-in-out infinite}
+
+.chips{display:flex;flex-direction:column;gap:10px;width:min(340px,92vw);margin:0 auto}
+.chip{
+  padding:14px 16px;border-radius:16px;
+  background:rgba(255,100,160,.1);border:1px solid rgba(255,120,180,.3);
+  font-size:.98rem;line-height:1.5;text-align:left;
+  opacity:0;transform:translateX(-18px);
+  box-shadow:0 0 24px rgba(255,100,160,.08);backdrop-filter:blur(8px);
+}
+.chip b{color:#ffb3d0}
+
+.cta-wrap{position:fixed;bottom:max(24px,env(safe-area-inset-bottom));left:0;right:0;z-index:40;display:flex;justify-content:center;pointer-events:none}
+.cta{
+  appearance:none;border:none;cursor:pointer;pointer-events:auto;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  padding:16px 36px;border-radius:999px;color:#1a0a12;
+  background:linear-gradient(135deg,#ffb3d0,#ff6b9d 50%,#e04080);
+  box-shadow:0 0 0 1px rgba(255,255,255,.2),0 12px 40px rgba(255,100,160,.5),inset 0 1px 0 rgba(255,255,255,.35);
+  min-width:200px;animation:btnPulse 2s ease-in-out infinite;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.cta.show{opacity:1;pointer-events:auto}
+.cta:active{transform:scale(.96)}
+
+.mus{
+  position:fixed;bottom:max(24px,env(safe-area-inset-bottom));right:16px;z-index:50;
+  width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,100,160,.25);backdrop-filter:blur(12px);
+  color:#fff;font-size:1.15rem;display:grid;place-items:center;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+.mus.show{opacity:1;pointer-events:auto}
+.mus.off{opacity:.4}
+
+#boom{position:fixed;inset:0;z-index:80;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg-mesh"></div>
+  <div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div>
+  <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+</div>
+<canvas id="fx"></canvas>
+<div class="vig"></div>
+<canvas id="boom"></canvas>
+
+<div id="start">
+  <div class="cake">🎂</div>
+  <h1>SUMARA</h1>
+  <p class="sub">a little something for your day</p>
+  <button id="startBtn">START 🎉</button>
+</div>
+
+<audio id="bgm" loop preload="auto">
+  <source src="birthday.mp3" type="audio/mpeg"/>
+</audio>
+<button class="mus off" id="mus">♪</button>
+
+<div class="rail" id="rail"></div>
+
+<div class="app" id="app">
+  <section class="slide on" data-i="0">
+    <div class="emoji-big">🥳🎂</div>
+    <div class="kicker">for a real one</div>
+    <h1 class="hero">SUMARA</h1>
+    <p class="serif">Daniel · birthday energy only</p>
+  </section>
+
+  <section class="slide" data-i="1">
+    <div class="emoji-big">💖</div>
+    <h1 class="hero">HAPPY<br>BIRTHDAY<br>SUMARA</h1>
+    <p class="line">🥳🎂💝</p>
+  </section>
+
+  <section class="slide" data-i="2">
+    <div class="kicker">from a friend who means it</div>
+    <p class="line">
+      Hope your day is soft and full<br>
+      laughter good people and the kind of joy that sticks around
+    </p>
+  </section>
+
+  <section class="slide" data-i="3">
+    <div class="emoji-big">✨</div>
+    <p class="line">
+      May this year bring you peace strength and every good thing you've been waiting on<br>
+      you deserve the best of it
+    </p>
+  </section>
+
+  <section class="slide" data-i="4">
+    <div class="chips" id="chips">
+      <div class="chip">Health happiness and a heart full of <b>light</b> 🤍</div>
+      <div class="chip">May all your wishes find their way <b>to you</b> ✨</div>
+      <div class="chip">ENJOY YOUR DAY <b>SUMARA</b> 🎉💖</div>
+    </div>
+  </section>
+
+  <section class="slide" data-i="5">
+    <div class="emoji-big">🎉🎂🥳</div>
+    <h1 class="hero">MANY MANY<br>HAPPY RETURNS<br>OF THE DAY</h1>
+    <p class="serif">go enjoy it Sumara it's yours</p>
+  </section>
+</div>
+
+<div class="cta-wrap">
+  <button class="cta" id="cta">Tap to continue ✨</button>
+</div>
+
+<script>
+const start=document.getElementById('start');
+const startBtn=document.getElementById('startBtn');
+const app=document.getElementById('app');
+const rail=document.getElementById('rail');
+const cta=document.getElementById('cta');
+const mus=document.getElementById('mus');
+const audio=document.getElementById('bgm');
+audio.volume=.5;
+
+const slides=[...document.querySelectorAll('.slide')];
+slides.forEach(()=>{const i=document.createElement('i');i.innerHTML='<b></b>';rail.appendChild(i)});
+const bars=[...rail.querySelectorAll('b')];
+let idx=0,busy=false;
+
+startBtn.onclick=()=>{
+  audio.play().then(()=>{mus.classList.remove('off')}).catch(()=>{});
+  start.classList.add('hide');
+  app.classList.add('show');
+  rail.classList.add('show');
+  mus.classList.add('show');
+  cta.classList.add('show');
+  setRail(0);
+};
+
+mus.onclick=()=>{
+  if(audio.paused){audio.play();mus.classList.remove('off')}
+  else{audio.pause();mus.classList.add('off')}
+};
+
+function setRail(n){
+  bars.forEach((b,i)=>{
+    gsap.killTweensOf(b);
+    if(i<n)gsap.set(b,{width:'100%'});
+    else if(i===n)gsap.fromTo(b,{width:'0%'},{width:'100%',duration:4,ease:'none'});
+    else gsap.set(b,{width:'0%'});
+  });
+}
+
+function showChips(){
+  [...document.querySelectorAll('#chips .chip')].forEach((c,i)=>{
+    gsap.fromTo(c,{opacity:0,x:-20},{opacity:1,x:0,duration:.5,delay:.1+i*.15,ease:'power3.out'});
+  });
+}
+
+function go(n){
+  if(busy||n===idx||n<0||n>=slides.length)return;
+  busy=true;
+  const prev=slides[idx],next=slides[n],dir=n>idx?1:-1;
+  gsap.to(prev,{opacity:0,y:dir*-24,duration:.35,ease:'power2.in',onComplete:()=>{prev.classList.remove('on');gsap.set(prev,{y:0})}});
+  next.classList.add('on');
+  gsap.fromTo(next,{opacity:0,y:dir*30},{opacity:1,y:0,duration:.45,ease:'power3.out',delay:.08,onComplete:()=>{busy=false}});
+  const kids=next.querySelectorAll('.kicker,.hero,.serif,.line,.emoji-big,.chips');
+  gsap.fromTo(kids,{opacity:0,y:14},{opacity:1,y:0,duration:.45,stagger:.05,delay:.15,ease:'power2.out'});
+  idx=n;setRail(n);
+  if(n===4)setTimeout(showChips,200);
+  if(n===5){cta.classList.remove('show');explode()}
+  else{cta.classList.add('show');cta.textContent='Tap to continue ✨'}
+}
+
+cta.onclick=()=>{if(idx<5)go(idx+1)};
+document.addEventListener('keydown',e=>{
+  if((e.key==='ArrowRight'||e.key===' ')&&idx<5){e.preventDefault();go(idx+1)}
+  if(e.key==='ArrowLeft'&&idx>0)go(idx-1);
+});
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX},{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].screenX-tx;
+  if(dx<-50&&idx<5)go(idx+1);
+  if(dx>50&&idx>0)go(idx-1);
+},{passive:true});
+
+const fx=document.getElementById('fx'),ctx=fx.getContext('2d');
+let W,H,parts=[];
+function resize(){W=fx.width=innerWidth;H=fx.height=innerHeight}
+resize();addEventListener('resize',resize);
+function spawn(){
+  parts.push({
+    x:Math.random()*W,y:Math.random()*H,
+    vx:(Math.random()-.5)*1.1,vy:(Math.random()-.5)*1.1,
+    r:Math.random()*2.2+.4,a:Math.random()*.7+.3,life:1,
+    decay:.003+Math.random()*.004,
+    hue:Math.random()>.5?330:280
+  });
+}
+for(let i=0;i<50;i++)spawn();
+(function draw(){
+  ctx.clearRect(0,0,W,H);
+  if(parts.length<90)spawn();
+  for(let i=parts.length-1;i>=0;i--){
+    const p=parts[i];
+    p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
+    if(p.life<=0){parts.splice(i,1);continue}
+    ctx.beginPath();
+    ctx.fillStyle=`hsla(${p.hue},90%,70%,${p.a*p.life})`;
+    ctx.shadowBlur=14;ctx.shadowColor=`hsla(${p.hue},90%,65%,.8)`;
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+  }
+  requestAnimationFrame(draw);
+})();
+
+const boom=document.getElementById('boom'),bctx=boom.getContext('2d');
+function explode(){
+  boom.width=innerWidth;boom.height=innerHeight;
+  const bits=[],colors=['#ff6b9d','#c77dff','#fff','#ffb3d0','#e04080','#ff9ec4'];
+  for(let i=0;i<150;i++)bits.push({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*16,vy:(Math.random()-.75)*14,r:Math.random()*4+2,c:colors[i%colors.length],a:1,rot:Math.random()*360,vr:(Math.random()-.5)*12});
+  let f=0;
+  (function tick(){
+    bctx.clearRect(0,0,boom.width,boom.height);
+    bits.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.2;p.a-=.011;p.rot+=p.vr;bctx.save();bctx.translate(p.x,p.y);bctx.rotate(p.rot*Math.PI/180);bctx.fillStyle=p.c;bctx.globalAlpha=Math.max(p.a,0);bctx.fillRect(-p.r,-p.r,p.r*2,p.r*2);bctx.restore()});
+    if(++f<110)requestAnimationFrame(tick);else bctx.clearRect(0,0,boom.width,boom.height);
+  })();
+}
+</script>
+</body>
+</html>
